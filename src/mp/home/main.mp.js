@@ -4,6 +4,8 @@ import { sync } from 'vuex-router-sync'
 import App from '../../App.vue'
 import store from '../../store'
 import Home from '../../home/Index.vue'
+import KboneUI from 'kbone-ui'
+import 'kbone-ui/lib/weui/weui.css'
 
 Vue.use(Router)
 
@@ -28,6 +30,7 @@ export default function createApp() {
   Vue.config.productionTip = false
 
   sync(store, router)
+  Vue.use(KboneUI)
 
   return new Vue({
     el: '#app',

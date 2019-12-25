@@ -8,12 +8,7 @@ module.exports = {
     router: {
         home: [
             '/(home|index)?',
-            '/index.html',
-            '/test/(home|index)',
-        ],
-        other: [
-            '/test/list/:id',
-            '/test/detail/:id',
+            '/index.html'
         ],
     },
     redirect: {
