@@ -1,6 +1,6 @@
-# vue-kbone
+# kbone-ui
 
-使用 vue 多端开发(小程序和Web)，基于 [kbone](https://github.com/wechat-miniprogram/kbone) 的 element 和 render。
+基于 kbone，利用 Vue 语法，实现一套跨平台开发的 UI 库内容。
 
 ## 特性
 
