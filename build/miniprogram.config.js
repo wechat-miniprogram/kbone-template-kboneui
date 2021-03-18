@@ -8,7 +8,12 @@ module.exports = {
     router: {
         home: [
             '/(home|index)?',
-            '/index.html'
+            '/index.html',
+            '/test/(home|index)',
+        ],
+        other: [
+            '/test/list/:id',
+            '/test/detail/:id',
         ],
     },
     redirect: {
@@ -17,6 +22,8 @@ module.exports = {
     },
     generate: {
         autoBuildNpm: 'npm',
+        appWxss: 'display',
+        weui: true,
     },
     app: {
         backgroundTextStyle: 'dark',
@@ -44,7 +51,7 @@ module.exports = {
 		attrValueReduce: 5000,
 	},
     projectConfig: {
-        projectname: 'kbone-template-vue',
-        appid: '',
+        projectname: 'kbone-template-vue-ui',
+        appid: 'wx14c7c4cd189644a1',
     },
 }

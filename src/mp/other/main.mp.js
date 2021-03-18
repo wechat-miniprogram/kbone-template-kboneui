@@ -2,24 +2,21 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import App from '../../App.vue'
 import store from '../../store'
-import Home from '../../home/Index.vue'
+import List from '../../list/Index.vue'
+import Detail from '../../detail/Index.vue'
 
 Vue.use(Router)
 
 const router = new Router({
   mode: 'history',
   routes: [{
-    path: '/(home|index)?',
-    name: 'Home',
-    component: Home,
+    path: '/test/list/:id',
+    name: 'List',
+    component: List,
   }, {
-    path: '/index.html',
-    name: 'HomeHtml',
-    component: Home,
-  }, {
-    path: '/test/(home|index)',
-    name: 'HomeTest',
-    component: Home,
+    path: '/test/detail/:id',
+    name: 'Detail',
+    component: Detail,
   }],
 })
 

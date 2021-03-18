@@ -1,42 +1,91 @@
 <template>
-  <KView class="page home js_show">
-       <KView class="page__hd">
-            <h1 class="page__title">
-                Kbone-UI
-            </h1>
-            <p class="page__desc">KboneUI 是一套同微信原生视觉体验一致的基础样式库，同时适用于 Web 端和小程序。</p>
-        </KView>
-        <KView class="page__bd page__bd_spacing">
-            <KButtonArea>
-              <KButton type="primary" >页面主要操作</KButton>
-              <KButton type="primary" open-type="getUserInfo"
-                @getuserinfo="getUserInfo" > getUserInfo </KButton>
-              <KButton type="primary" :loading="true">Loading</KButton>
-              <KButton type="primary" :disabled="true">禁止点击</KButton>
-              <KButton >页面次要操作</KButton>
-              <KButton type="warn">警告类操作</KButton>
-              <KButton type="warn" :loading="true">警告类操作</KButton>
-              <KButton type="warn" :disabled="true">警告类操作</KButton>
-          </KButtonArea>
-          <KButtonArea direction="horizontal">
-              <KButton size="mini" type="primary">btn</KButton>
-              <KButton size="mini" >btn</KButton>
-              <KButton size="mini" type="warn">btn</KButton>
-          </KButtonArea>
-        </KView>
-  </KView>
+  <div class="cnt">
+    <Header></Header>
+    <div>
+      <a href="/test/list/321">当前页跳转</a>
+      <a href="/test/detail/123" target="_blank">新开页面跳转</a>
+      <button @click="onClickJump">当前页跳转</button>
+      <button @click="onClickOpen">新开页面跳转</button>
+    </div>
+    <!-- vue-improve-loader -->
+    <div check-reduce>
+      <p>这段话不会在小程序里显示</p>
+      <p>在构建的时候就会被 vue-improve-loader 给干掉了</p>
+    </div>
+    <!-- reduce-loader -->
+    <Web>
+      <p>这段话也不会在小程序里显示</p>
+      <p>在构建的时候就会被 reduce-loader 给干掉了</p>
+    </Web>
+    <!-- 样式隐藏 -->
+    <div class="for-web">
+      <p>这段话也不会在小程序里显示</p>
+      <p>在渲染时会被样式隐藏</p>
+    </div>
+    <KboneUI></KboneUI>
+    <Footer></Footer>
+  </div>
 </template>
 
 <script>
 import Vue from 'vue'
-
+import Header from '../common/Header.vue'
+import Footer from '../common/Footer.vue'
+import Web from 'reduce-loader!../common/Web.vue'
+import KboneUI from '../common/KboneUI.vue'
+import 'reduce-loader!./web'
 
 export default Vue.extend({
-  name: 'Button',
-  methods: {
-    getUserInfo(e) {
-      console.log(e)
+  name: 'Home',
+  components: {
+    Header,
+    Footer,
+    Web,
+    KboneUI,
+  },
+  created() {
+    window.addEventListener('wxload', query => console.log('page1 wxload', query))
+    window.addEventListener('wxshow', () => console.log('page1 wxshow'))
+    window.addEventListener('wxready', () => console.log('page1 wxready'))
+    window.addEventListener('wxhide', () => console.log('page1 wxhide'))
+    window.addEventListener('wxunload', () => console.log('page1 wxunload'))
+
+    if (process.env.isMiniprogram) {
+      console.log('I am in miniprogram')
+    } else {
+      console.log('I am in Web')
     }
-  }
+  },
+  methods: {
+    onClickJump() {
+      window.location.href = '/test/list/123'
+    },
+
+    onClickOpen() {
+      window.open('/test/detail/123')
+    },
+  },
 })
 </script>
+
+<style lang="less">
+.cnt {
+  margin-top: 20px;
+}
+
+a, button {
+  display: block;
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  font-size: 20px;
+  border: 1px solid #ddd;
+}
+
+.miniprogram-root {
+  .for-web {
+    display: none;
+  }
+}
+</style>

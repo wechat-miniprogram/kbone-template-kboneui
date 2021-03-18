@@ -2,15 +2,13 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import { sync } from 'vuex-router-sync'
-import KboneUI from 'kbone-ui'
-import 'kbone-ui/lib/weui/weui.css'
+
+import KBoneUI from 'kbone-ui' // 引入完整 kbone-ui
+// import KBoneUI from 'kbone-ui/wx-components' // 只引入内置组件
+
+KBoneUI.register()
 
 Vue.config.productionTip = false
-
-sync(store, router)
-
-Vue.use(KboneUI)
 
 new Vue({
   el: '#app',
